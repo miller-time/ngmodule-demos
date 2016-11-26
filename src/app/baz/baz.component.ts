@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ComponentRegistrationService } from '../component-registration.service';
 
 @Component({
   selector: 'app-baz',
@@ -6,10 +7,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./baz.component.css']
 })
 export class BazComponent implements OnInit {
+  components: string[]
 
-  constructor() { }
+  constructor(
+    private compReg: ComponentRegistrationService
+  ) { }
 
   ngOnInit() {
+    this.compReg.register('baz');
+    this.components = this.compReg.list();
   }
-
 }
