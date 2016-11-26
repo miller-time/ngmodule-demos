@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ComponentRegistrationService } from '../component-registration.service';
 
 @Component({
   selector: 'app-home',
@@ -6,10 +7,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  components: string[] = [];
 
-  constructor() { }
+  constructor(
+    private compReg: ComponentRegistrationService
+  ) { }
 
   ngOnInit() {
+    this.compReg.register('home');
+    this.components = this.compReg.list();
   }
-
 }
